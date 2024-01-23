@@ -112,10 +112,10 @@ export default function AddUser(){
                 DOB: 'Please Select DOB'
             }));
         }
-        if (Object.values(errors).every((error) => !error)) {
+                if (Object.values(errors).every((error) => !error)) {
             const user = users.length ? [...users] : [];
             user.push(formData)
-            setUsers(user)
+                        setUsers(user)
             setFormData({
                 name: '',
                 email: '',
@@ -124,6 +124,7 @@ export default function AddUser(){
                 gender: '',
                 DOB: ''
               })
+              validatePhoneNumber(formData.contact)
         }
       }
       const [errors, setErrors] = useState({});
@@ -139,7 +140,7 @@ export default function AddUser(){
 
 
       const validatePhoneNumber = (value) => {
-        const regex = /^\d{9}$/; // Validation rule: exactly 9 digits
+        const regex = /^\d{10}$/; // Validation rule: exactly 9 digits
    
         if (!value) {
             setErrors((prevErrors) => ({
@@ -149,7 +150,7 @@ export default function AddUser(){
         } else if (!regex.test(value)) {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                contact: 'Phone number must be exactly 9 digits'
+                contact: 'Phone number must be exactly 10 digits'
             }));
         } else {
             setErrors((prevErrors) => ({
